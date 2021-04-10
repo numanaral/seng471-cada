@@ -8,7 +8,6 @@ import PaperContainerWithSpacing from 'components/PaperContainerWithSpacing';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { SadIcon } from 'icons';
 import ResponsiveCenteredContainer from 'components/ResponsiveCenteredContainer';
-import TooltipButton from 'components/TooltipButton';
 import useLogin from 'store/firebase/hooks/useLogin';
 import Spacer from 'components/Spacer';
 import { BASE_PATH } from 'routes/constants';
@@ -26,17 +25,6 @@ const loginSchema = yup.object().shape({
 	password: yup.string().label('Password').required(),
 });
 
-const StyledDivider = styled(Divider)`
-	width: 40%;
-	${({ theme }) => `
-		margin: ${theme.spacing(5, 0)};
-	`}
-`;
-const StyledSpan = styled(Typography)`
-	text-align: center;
-	width: 20%;
-`;
-
 const StyledPaperContainerWithSpacing = styled(PaperContainerWithSpacing)`
 	${({ theme }) => `
 		background-color: ${theme.palette.background.level2};
@@ -44,7 +32,7 @@ const StyledPaperContainerWithSpacing = styled(PaperContainerWithSpacing)`
 `;
 
 const Login = ({ location, error, authorizing }) => {
-	const { googleLogin, githubLogin, emailLogin } = useLogin();
+	const { emailLogin } = useLogin();
 	const onSubmit = data => emailLogin(data);
 	const returnUrl = location?.search.replace('?returnUrl=', '');
 

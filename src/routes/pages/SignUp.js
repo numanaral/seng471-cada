@@ -1,12 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import * as yup from 'yup';
 
 import ContainerWithCenteredItems from 'components/ContainerWithCenteredItems';
 import PaperContainerWithSpacing from 'components/PaperContainerWithSpacing';
 import ResponsiveCenteredContainer from 'components/ResponsiveCenteredContainer';
-import TooltipButton from 'components/TooltipButton';
 import useLogin from 'store/firebase/hooks/useLogin';
 import Spacer from 'components/Spacer';
 import { BASE_PATH } from 'routes/constants';
@@ -33,17 +31,6 @@ const signUpSchema = yup.object().shape({
 		.required(),
 });
 
-const StyledDivider = styled(Divider)`
-	width: 40%;
-	${({ theme }) => `
-		margin: ${theme.spacing(5, 0)};
-	`}
-`;
-const StyledSpan = styled(Typography)`
-	text-align: center;
-	width: 20%;
-`;
-
 const StyledPaperContainerWithSpacing = styled(PaperContainerWithSpacing)`
 	${({ theme }) => `
 		background-color: ${theme.palette.background.level2};
@@ -51,7 +38,7 @@ const StyledPaperContainerWithSpacing = styled(PaperContainerWithSpacing)`
 `;
 
 const SignUp = ({ location }) => {
-	const { googleLogin, githubLogin, emailSignUp } = useLogin();
+	const { emailSignUp } = useLogin();
 	const onSubmit = data => emailSignUp(data);
 	const returnUrl = location?.search.replace('?returnUrl=', '');
 

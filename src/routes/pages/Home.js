@@ -30,8 +30,8 @@ const Home = () => {
 		<>
 			<Spacer direction="bottom" spacing="5" />
 			<ContainerWithCenteredItems>
-				<StyledTypography variant="h1" component="h1" color="secondary">
-					SlideScott
+				<StyledTypography variant="h6" component="h1" color="secondary">
+					CAR EXTERIOR & CAR INTERIOR
 				</StyledTypography>
 			</ContainerWithCenteredItems>
 			<Spacer direction="bottom" spacing="5" />
