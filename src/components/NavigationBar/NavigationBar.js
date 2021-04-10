@@ -22,14 +22,12 @@ const StyledAppBar = styled(AppBar)`
 `;
 
 const StyledLink = styled(Link)`
-	position: absolute;
-	left: 10px;
-	margin: auto;
-	text-align: center;
-	top: 10px;
-	height: 80px;
-	border-radius: 20px;
 	color: #fff;
+	padding: 5px;
+	${({ theme }) => `
+		border: 1px solid ${theme.palette.primary.main};
+		border-radius: ${theme.shape.borderRadius}px;
+	`}
 `;
 
 const NAVIGATION_BAR_HEIGHT = 64;
@@ -93,15 +91,15 @@ const TopNavigationBar = () => {
 	return (
 		<StyledAppBar position="sticky" color="secondary">
 			<Toolbar>
+				<StyledLink component={ReactRouterLink} variant="h6" to="/">
+					SENG 471 - CADA
+				</StyledLink>
 				{isLoggedIn && (
 					<>
 						{/* <div style={{ flexGrow: 1 }} /> */}
 						<Links />
 					</>
 				)}
-				<StyledLink component={ReactRouterLink} variant="h4" to="/">
-					SENG 471 - CADA
-				</StyledLink>
 				<div style={{ flexGrow: 1 }} />
 				<Menu {...menuProps} />
 			</Toolbar>
