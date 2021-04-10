@@ -10,7 +10,6 @@ import useAuth from 'store/firebase/hooks/useAuth';
 import { BASE_PATH } from 'routes/constants';
 import { AccountIcon } from 'icons';
 import Links from './Links';
-import logo from './full-logo.png';
 
 const StyledAppBar = styled(AppBar)`
 	${({ theme }) => `
@@ -24,24 +23,13 @@ const StyledAppBar = styled(AppBar)`
 
 const StyledLink = styled(Link)`
 	position: absolute;
-	left: 0;
-	right: 0;
+	left: 10px;
 	margin: auto;
 	text-align: center;
-	top: 0;
+	top: 10px;
 	height: 80px;
 	border-radius: 20px;
-	width: 260px;
-`;
-
-const LogoPlaceholder = styled.img`
-	width: 300px;
-`;
-
-const StyledLogo = styled.img`
-	height: 80px;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+	color: #fff;
 `;
 
 const NAVIGATION_BAR_HEIGHT = 64;
@@ -109,24 +97,13 @@ const TopNavigationBar = () => {
 					<>
 						{/* <div style={{ flexGrow: 1 }} /> */}
 						<Links />
-						<LogoPlaceholder />
 					</>
 				)}
-				<StyledLink component={ReactRouterLink} to="/">
-					<StyledLogo src={logo} alt="logo" />
+				<StyledLink component={ReactRouterLink} variant="h4" to="/">
+					SENG 471 - CADA
 				</StyledLink>
 				<div style={{ flexGrow: 1 }} />
-				{/* <ClearLocalStorageButton /> */}
-
-				{/* <ThemeToggle /> */}
-				{/* <TooltipButton
-					tooltip="Dashboard"
-					// text="Dashboard"
-					onClick={() => null}
-					icon={Home}
-				/> */}
 				<Menu {...menuProps} />
-				{/* {isLoggedIn && <div style={{ flexGrow: 1 }} />} */}
 			</Toolbar>
 		</StyledAppBar>
 	);
