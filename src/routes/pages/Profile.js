@@ -9,7 +9,6 @@ import ThemeToggle from 'containers/ThemeToggle';
 import PaperContainerWithSpacing from 'components/PaperContainerWithSpacing';
 import ThemeColorPicker from 'containers/ThemeColorPicker';
 import useRoles from 'store/firebase/hooks/useRoles';
-import AnalyticsToggle from 'containers/AnalyticsToggle';
 
 const Switch = () => <MuiSwitch disabled />;
 
@@ -55,13 +54,6 @@ const getPreferenceList = (isDevUser = false) => [
 		{
 			type: itemTypes.SECTION_TITLE_WITH_DIVIDER,
 			primaryText: 'DEV SETTINGS',
-		},
-		{
-			primaryText: 'Analytics',
-			icon: AnalyticsIcon,
-			// TODO: If I decide to add redux, won't need this complication here
-			// but it's not needed right now
-			secondaryAction: <AnalyticsToggle />,
 		},
 		SPACER,
 	]) ||

@@ -4,14 +4,18 @@ import loadable from 'utils/loadable';
 
 const USER_ROLES = {
 	DEV: 'Developer',
-	FREE_USER: 'User',
-	PAID_USER: 'Paid User',
+	OWNER: 'Owner',
+	DESIGNATED_SALESPERSON: 'Designated Salesperson',
+	GENERIC_SALESPERSON: 'Generic Salesperson',
 };
+
+const { DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON } = USER_ROLES;
 
 const PAGE_ROLES = {
 	// PUBLIC: '*',
-	LOGGED_IN: [USER_ROLES.DEV, USER_ROLES.PAID_USER, USER_ROLES.FREE_USER],
-	PAID: [USER_ROLES.DEV, USER_ROLES.PAID_USER],
+	LOGGED_IN: [DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON],
+	OWNER: [OWNER],
+	SALESPERSON: [DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON],
 };
 
 // This is kinda required for gh-pages and SPA to work well together
@@ -37,6 +41,7 @@ const mapBasePathForLinks = link => ({
 const LazyHome = loadable(() => import(`routes/pages/Home`));
 
 // Private routes
+const LazyTemplateColorPicker = loadable(() => import(`routes/pages/TemplateColorPicker`));
 const LazyProfile = loadable(() => import(`routes/pages/Profile`));
 
 // Handler Pages
@@ -47,6 +52,13 @@ const LazySignUp = loadable(() => import(`./pages/SignUp`));
 /* eslint-enable prettier/prettier */
 
 const PRIVATE_ROUTES = [
+	{
+		title: 'Template Color Picker',
+		description: `Pick template colors!`,
+		path: '/template-color-picker',
+		component: <LazyTemplateColorPicker />,
+		roles: PAGE_ROLES.OWNER,
+	},
 	// {
 	// 	title: 'Slide Builder',
 	// 	description: `Build your slides!`,
@@ -58,8 +70,10 @@ const PRIVATE_ROUTES = [
 		description: `Adjust your app profile.`,
 		path: '/profile',
 		component: <LazyProfile />,
+		roles: PAGE_ROLES.LOGGED_IN,
 	},
-].map(mapRoles(PAGE_ROLES.LOGGED_IN));
+];
+// ].map(mapRoles(PAGE_ROLES.LOGGED_IN));
 
 const ROUTE_LIST = [
 	{
@@ -114,10 +128,11 @@ const SHARED_DISPLAY_PAGES = [
 	// Private Paths
 	...[
 		{
-			label: 'Dashboard',
-			tooltip: 'Dashboard',
-			text: 'Dashboard',
-			to: '/dashboard',
+			label: 'Template Color Picker',
+			tooltip: 'Template Color Picker',
+			text: 'Template Color Picker',
+			to: '/template-color-picker',
+			roles: PAGE_ROLES.OWNER,
 		},
 		// {
 		// 	label: 'Slide Builder',
@@ -125,7 +140,8 @@ const SHARED_DISPLAY_PAGES = [
 		// 	text: 'Slide Builder',
 		// 	to: '/slide-builder',
 		// },
-	].map(mapRoles(PAGE_ROLES.LOGGED_IN)),
+	],
+	// ].map(mapRoles(PAGE_ROLES.LOGGED_IN)),
 	// {
 	// 	label: 'Account',
 	// 	tooltip: 'Account',

@@ -41,4 +41,9 @@ export {
 	EmojiPeopleOutlined as BitmojiIcon,
 	ChatBubbleOutline as ChatBubbleIcon,
 	CheckBoxOutlineBlank as CheckboxIcon,
+	DriveEta as Vehicle1Icon,
+	AirportShuttle as Vehicle2Icon,
+	LocalShipping as Vehicle3Icon,
+	Motorcycle as Vehicle4Icon,
+	EventSeat as InteriorIcon,
 } from '@material-ui/icons';
