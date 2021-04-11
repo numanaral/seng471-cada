@@ -10,11 +10,12 @@ const PageContainer = styled(Paper)`
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
+		align-items: center;
 		overflow-y: auto;
 		overflow-x: hidden;
 		${theme.breakpoints.up('md')} {
 			justify-content: center;
-			padding: theme.spacing(10);
+			padding: ${theme.spacing(5)}px;
 		}
 	`}
 `;
