@@ -16,10 +16,12 @@ const toFirestore = props =>
 		const value = props[key];
 		// eslint-disable-next-line no-param-reassign
 		acc[key] =
-			(typeof value === 'object' &&
-				!(value instanceof Date) &&
-				JSON.stringify(value)) ||
-			value;
+			// eslint-disable-next-line no-nested-ternary
+			value === null
+				? null
+				: typeof value === 'object' && !(value instanceof Date)
+				? JSON.stringify(value)
+				: value;
 		return acc;
 	}, {});
 

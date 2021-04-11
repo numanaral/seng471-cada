@@ -1,5 +1,13 @@
 const firstCapital = s => (s && s[0].toUpperCase() + s.slice(1)) || '';
 
+// https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case#comment-70645327
+const toCamelCase = str =>
+	str
+		.replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, idx) =>
+			idx === 0 ? ltr.toLowerCase() : ltr.toUpperCase()
+		)
+		.replace(/\s+/g, '');
+
 // https://stackoverflow.com/a/26188910/13161405
 const pascalToSentence = str =>
 	str
@@ -88,6 +96,7 @@ const doesNotExist = value => value === null || value === undefined;
 
 export {
 	firstCapital,
+	toCamelCase,
 	pascalToSentence,
 	getImmerState,
 	updateImmerDraft,

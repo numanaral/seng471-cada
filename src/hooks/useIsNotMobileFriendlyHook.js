@@ -3,7 +3,7 @@ import useNotificationProvider from 'store/redux/hooks/useNotificationProvider';
 
 const useIsNotMobileFriendly = () => {
 	const { notifyWarning } = useNotificationProvider();
-	const smAndDown = useMediaQuery(theme => theme.breakpoints.down('sm'));
+	const smAndDown = useMediaQuery(theme => theme.breakpoints.down('xs'));
 
 	if (smAndDown) {
 		notifyWarning(

@@ -3,6 +3,7 @@ export {
 	Brightness2 as DarkThemeIcon,
 	SentimentVeryDissatisfied as SadIcon,
 	SentimentSatisfied as HappyIcon,
+	People as CustomersIcon,
 	AccountCircleRounded as AccountIcon,
 	Assessment as AnalyticsIcon,
 	Bookmarks as BookmarksIcon,
@@ -46,4 +47,5 @@ export {
 	LocalShipping as Vehicle3Icon,
 	Motorcycle as Vehicle4Icon,
 	EventSeat as InteriorIcon,
+	HelpOutline as QuestionIcon,
 } from '@material-ui/icons';

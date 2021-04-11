@@ -11,6 +11,7 @@ import {
 	DARK_THEME,
 	LIGHT_THEME,
 } from 'store/redux/reducers/userPreference/constants';
+import { blue, pink } from '@material-ui/core/colors';
 
 const TRANSITION_CSS_PROPS = [
 	'background',
@@ -143,24 +144,24 @@ const getThemeOptions = (
 	return {
 		palette: {
 			type: mode,
-			// primary: blue,
-			primary: {
-				// light: '#71f2ff',
-				main: primaryColor || PRIMARY_COLOR,
-				// dark: '#008e9d',
-				contrastText:
-					(isDark && '#fff') ||
-					defaultTheme.palette.getContrastText('#30BFCE'),
-			},
-			// secondary: pink,
-			secondary: {
-				// light: '#ffe479',
-				main: secondaryColor || SECONDARY_COLOR,
-				// dark: '#c88214',
-				contrastText:
-					(isDark && '#fff') ||
-					defaultTheme.palette.getContrastText('#FFB249'),
-			},
+			primary: blue,
+			secondary: pink,
+			// primary: {
+			// 	// light: '#71f2ff',
+			// 	main: primaryColor || PRIMARY_COLOR,
+			// 	// dark: '#008e9d',
+			// 	contrastText:
+			// 		(isDark && '#fff') ||
+			// 		defaultTheme.palette.getContrastText('#30BFCE'),
+			// },
+			// secondary: {
+			// 	// light: '#ffe479',
+			// 	main: secondaryColor || SECONDARY_COLOR,
+			// 	// dark: '#c88214',
+			// 	contrastText:
+			// 		(isDark && '#fff') ||
+			// 		defaultTheme.palette.getContrastText('#FFB249'),
+			// },
 			error: {
 				light: '#e57373',
 				main: '#f44336',
