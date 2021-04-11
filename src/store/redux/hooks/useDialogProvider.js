@@ -8,6 +8,7 @@ import {
 	displayHtmlDialog,
 	hideDialog,
 	displayFormDialog,
+	setDialogProps,
 } from 'store/redux/reducers/dialog/actions';
 import LoadingIndicator from 'components/LoadingIndicator';
 import ContainerWithCenteredItems from 'components/ContainerWithCenteredItems';
@@ -79,8 +80,6 @@ const useDialogProvider = () => {
 		[openComponentDialog, openTextDialog]
 	);
 
-	const closeDialog = useCallback(() => dispatch(hideDialog()), [dispatch]);
-
 	const getCallbackMethod = useCallback(
 		type => {
 			let cb = openTextDialog;
@@ -90,6 +89,8 @@ const useDialogProvider = () => {
 		},
 		[openComponentDialog, openHtmlDialog, openTextDialog]
 	);
+
+	// utils
 
 	const displayError = useCallback(
 		(title = 'Error', content = '', type = 'text') => {
@@ -105,6 +106,12 @@ const useDialogProvider = () => {
 		[getCallbackMethod]
 	);
 
+	const closeDialog = useCallback(() => dispatch(hideDialog()), [dispatch]);
+
+	const setPending = useCallback(() => {
+		dispatch(setDialogProps({ pending: true }));
+	}, [dispatch]);
+
 	return {
 		openTextDialog,
 		openComponentDialog,
@@ -112,10 +119,10 @@ const useDialogProvider = () => {
 		openFormDialog,
 		openConfirmDialog,
 		openLoadingDialog,
-		closeDialog,
-		getCallbackMethod,
 		displayError,
 		displaySuccess,
+		closeDialog,
+		setPending,
 	};
 };
 
