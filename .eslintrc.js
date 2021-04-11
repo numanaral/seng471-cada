@@ -69,6 +69,7 @@ module.exports = {
 		'react/jsx-props-no-spreading': OFF,
 		'react/no-array-index-key': OFF,
 		'react/react-in-jsx-scope': OFF,
+		'react/prop-types': OFF,
 		'prettier/prettier': ERROR,
 	},
 };
