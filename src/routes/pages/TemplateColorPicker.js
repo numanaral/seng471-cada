@@ -1,14 +1,13 @@
 import { Vehicle1Icon as ExteriorIcon, InteriorIcon, PaletteIcon } from 'icons';
-import ContainerWithCenteredItems from 'components/ContainerWithCenteredItems';
-import PaperContainerWithSpacing from 'components/PaperContainerWithSpacing';
+import PageContainer from 'components/page-components/PageContainer';
 import ColorPicker from 'components/ColorPicker';
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 import styled from 'styled-components';
 import Spacer from 'components/Spacer';
-import { getElementFromElementOrType } from 'utils/react';
 import useWatchColors from 'store/firebase/hooks/colors/useWatchColors';
 import useColors from 'store/firebase/hooks/colors/useColors';
+import PageTitle from 'components/page-components/PageTitle';
 
 const TemplateColorWrapper = styled.div`
 	display: inline-block;
@@ -27,11 +26,6 @@ const TemplateColor = ({ color, ind, onColorChange = console.log }) => {
 	);
 };
 
-const TemplateTitle = styled(Typography)`
-	align-items: center;
-	display: inline-flex;
-`;
-
 const TemplateColorPicker = () => {
 	const { exterior, interior, pending, error } = useWatchColors();
 	const { updateColors } = useColors();
@@ -45,29 +39,26 @@ const TemplateColorPicker = () => {
 		await updateColors(newColors);
 	};
 
-	const body =
-		pending ||
-		error ||
-		[
-			{
-				name: 'Exterior',
-				list: exterior,
-				icon: ExteriorIcon,
-			},
-			{
-				name: 'Interior',
-				list: interior,
-				icon: InteriorIcon,
-			},
-		].map(({ name, list, icon }) => (
-			<div style={{ width: '50%', textAlign: 'center' }}>
-				<TemplateTitle variant="h5">
-					{getElementFromElementOrType(icon)} &nbsp;
-					{name}
-					Colors
-				</TemplateTitle>
-				<Spacer direction="bottom" spacing="3" />
-				{list.map((color, ind) => (
+	const body = [
+		{
+			name: 'Exterior',
+			list: exterior,
+			icon: ExteriorIcon,
+		},
+		{
+			name: 'Interior',
+			list: interior,
+			icon: InteriorIcon,
+		},
+	].map(({ name, list, icon }) => (
+		<div style={{ width: '50%', textAlign: 'center' }}>
+			<PageTitle icon={icon} subtitle>
+				{name} Colors
+			</PageTitle>
+			<Spacer direction="bottom" spacing="3" />
+			{pending ||
+				error ||
+				list.map((color, ind) => (
 					<TemplateColor
 						key={color}
 						color={color}
@@ -75,25 +66,17 @@ const TemplateColorPicker = () => {
 						onColorChange={onColorChange(name.toLowerCase(), ind)}
 					/>
 				))}
-			</div>
-		));
+		</div>
+	));
 
 	return (
-		<ContainerWithCenteredItems vertical horizontal>
-			<PaperContainerWithSpacing
-				padding="50px !important"
-				textAlign="center"
-			>
-				<TemplateTitle component="h1" variant="h2">
-					<PaletteIcon style={{ fontSize: 70 }} /> &nbsp;Template
-					Colors
-				</TemplateTitle>
-				<Spacer direction="bottom" spacing="15" />
-				<Box display="flex" justifyContent="center">
-					{body}
-				</Box>
-			</PaperContainerWithSpacing>
-		</ContainerWithCenteredItems>
+		<PageContainer>
+			<PageTitle icon={PaletteIcon}>Template Colors</PageTitle>
+			<Spacer direction="bottom" spacing="15" />
+			<Box display="flex" width="100%">
+				{body}
+			</Box>
+		</PageContainer>
 	);
 };
 

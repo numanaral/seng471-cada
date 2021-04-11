@@ -3,7 +3,7 @@ import { Typography, Divider, Grid, Link } from '@material-ui/core';
 import { SadIcon } from 'icons';
 
 import styled from 'styled-components';
-import LazyPageContainer from 'components/PageContainer/Lazy';
+import LazyPageContainer from 'components/page-components/PageContainer/Lazy';
 import { routerBasePropTypes, routerBaseDefaultProps } from './types';
 
 const StyledSadIcon = styled(SadIcon)`

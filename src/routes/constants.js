@@ -14,17 +14,17 @@ const { DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON } = USER_ROLES;
 const PAGE_ROLES = {
 	// PUBLIC: '*',
 	LOGGED_IN: [DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON],
-	OWNER: [OWNER],
+	OWNER: [DEV, OWNER],
 	SALESPERSON: [DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON],
 };
 
 // This is kinda required for gh-pages and SPA to work well together
 const BASE_PATH = '/seng471-cada';
 
-const mapRoles = roles => route => ({
-	...route,
-	roles,
-});
+// const mapRoles = roles => route => ({
+// 	...route,
+// 	roles,
+// });
 
 const mapBasePathForRoutes = route => ({
 	...route,
@@ -41,8 +41,14 @@ const mapBasePathForLinks = link => ({
 const LazyHome = loadable(() => import(`routes/pages/Home`));
 
 // Private routes
-const LazyTemplateColorPicker = loadable(() => import(`routes/pages/TemplateColorPicker`));
+const LazyTemplateColorPicker = loadable(() =>
+	import(`routes/pages/TemplateColorPicker`)
+);
 const LazyProfile = loadable(() => import(`routes/pages/Profile`));
+const LazyCustomers = loadable(() => import(`routes/pages/Customers`));
+const LazyCustomerManager = loadable(() =>
+	import(`routes/pages/CustomerManager`)
+);
 
 // Handler Pages
 const LazyNotFound = loadable(() => import(`./pages/NotFound`));
@@ -54,10 +60,24 @@ const LazySignUp = loadable(() => import(`./pages/SignUp`));
 const PRIVATE_ROUTES = [
 	{
 		title: 'Template Color Picker',
-		description: `Pick template colors!`,
+		description: `Pick template colors`,
 		path: '/template-color-picker',
 		component: <LazyTemplateColorPicker />,
 		roles: PAGE_ROLES.OWNER,
+	},
+	{
+		title: 'Customers',
+		description: `List of customers`,
+		path: '/customers',
+		component: <LazyCustomers />,
+		roles: PAGE_ROLES.SALESPERSON,
+	},
+	{
+		title: 'Customer Manager',
+		description: `Manage customer`,
+		path: '/customers/:id',
+		component: <LazyCustomerManager />,
+		roles: PAGE_ROLES.SALESPERSON,
 	},
 	// {
 	// 	title: 'Slide Builder',
@@ -133,6 +153,13 @@ const SHARED_DISPLAY_PAGES = [
 			text: 'Template Color Picker',
 			to: '/template-color-picker',
 			roles: PAGE_ROLES.OWNER,
+		},
+		{
+			label: 'Customers',
+			tooltip: 'Customers',
+			text: 'Customers',
+			to: '/customers',
+			roles: PAGE_ROLES.SALESPERSON,
 		},
 		// {
 		// 	label: 'Slide Builder',
