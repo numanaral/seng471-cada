@@ -2,20 +2,26 @@ import { USER_ROLES } from 'routes/constants';
 import { hasAnyFrom } from 'utils/object';
 import useProfile from './useProfile';
 
+const { DEV, OWNER, DESIGNATED_SALESPERSON, GENERIC_SALESPERSON } = USER_ROLES;
+
 const useRoles = () => {
 	const { roles } = useProfile();
 
-	const isDevUser = hasAnyFrom([USER_ROLES.DEV], roles);
-	const isPaidUser = hasAnyFrom(
-		[USER_ROLES.DEV, USER_ROLES.PAID_USER],
-		roles
-	);
-	const isFreeUser = hasAnyFrom([USER_ROLES.USER], roles);
+	const hasAccess = rolesToCheck => hasAnyFrom(rolesToCheck, roles);
+	const isDevUser = hasAccess([DEV]);
+	const isOwner = hasAccess([DEV, OWNER]);
+	const isDesignatedSalesperson = hasAccess([DESIGNATED_SALESPERSON]);
+	const isGenericSalesperson = hasAccess([GENERIC_SALESPERSON]);
+	const isSalesperson =
+		isOwner || isDesignatedSalesperson || isGenericSalesperson;
 
 	return {
-		isFreeUser,
-		isPaidUser,
+		hasAccess,
 		isDevUser,
+		isOwner,
+		isDesignatedSalesperson,
+		isGenericSalesperson,
+		isSalesperson,
 	};
 };
 
