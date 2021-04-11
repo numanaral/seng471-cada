@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { NAV_LIST } from 'routes/constants';
+import useRoles from 'store/firebase/hooks/useRoles';
 
 import styled from 'styled-components';
 
@@ -18,9 +19,12 @@ const StyledLink = styled(Link)`
 
 // TODO: When user roles are created, ensure the links
 // don't show up if the user doesn't have the role
-const Links = () =>
+const Links = () => {
+	const { hasAccess } = useRoles();
 	// Ignore home as we got the logo link
-	NAV_LIST.filter(link => link.label !== 'Home').map(link => (
+	return NAV_LIST.filter(link => {
+		return link.label !== 'Home' && hasAccess(link.roles || []);
+	}).map(link => (
 		<StyledLink
 			component={NavLink}
 			variant="h6"
@@ -37,5 +41,5 @@ const Links = () =>
 			{link.text}
 		</StyledLink>
 	));
-
+};
 export default Links;
