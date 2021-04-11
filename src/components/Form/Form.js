@@ -19,7 +19,10 @@ const Form = ({
 	schema,
 	onSubmit,
 	defaultValues,
+	pending = false,
 	submitText = 'Submit',
+	ignoreAutocomplete: ignoreAutocompleteByDefault = false,
+	...rest
 }) => {
 	const { control, handleSubmit, errors } = useForm({
 		resolver: yupResolver(schema),
@@ -72,6 +75,7 @@ const Form = ({
 			onSubmit={handleSubmit(onSubmit, onInvalid)}
 			noValidate
 			autoComplete="off"
+			{...rest}
 		>
 			<Spacer direction="bottom" spacing="2" />
 			{items.map(
@@ -83,6 +87,9 @@ const Form = ({
 						required = false,
 						defaultValue = '',
 						variant = 'outlined',
+						// defaults to what's given in the form
+						ignoreAutocomplete = ignoreAutocompleteByDefault,
+						...restFieldProps
 					},
 					ind
 				) => {
@@ -120,21 +127,41 @@ const Form = ({
 						);
 					}
 
+					const _props = {
+						control,
+						defaultValue,
+						name,
+						label,
+						...(variant && { variant }),
+						...(required && getRequiredField(name)),
+						...props,
+						...restFieldProps,
+					};
+
+					// ignores autocomplete by setting the input prop
+					// if the form has ignoreAutocomplete=true, for fields
+					// that don't explicitly set it to true will also be
+					// ignored. In order for this to work, we need to add
+					// an input element that does not have autocomplete
+					// property assigned. When all the form elements have
+					// it set, autocomplete popup still appears. Check
+					// the hidden form element on the bottom
+					if (ignoreAutocomplete) {
+						_props.inputProps = {
+							...(props.inputProps || {}),
+							autoComplete: 'ignore',
+						};
+					}
+
 					return (
 						<FormGroup key={name}>
-							<Controller
-								control={control}
-								defaultValue={defaultValue}
-								name={name}
-								label={label}
-								{...(variant && { variant })}
-								{...(required && getRequiredField(name))}
-								{...props}
-							/>
+							<Controller {..._props} />
 						</FormGroup>
 					);
 				}
 			)}
+			{/* required-for-autocomplete-block */}
+			<input hidden />
 			<Spacer direction="bottom" spacing="2" />
 			<ContainerWithCenteredItems container>
 				<Grid container justify="center" item xs={12} sm={8} md={6}>
@@ -145,6 +172,7 @@ const Form = ({
 						fullWidth
 						bg="primary"
 						variant="contained"
+						loading={pending}
 					/>
 				</Grid>
 			</ContainerWithCenteredItems>
