@@ -34,19 +34,19 @@ const PREFERENCE_LIST = [
 		icon: PaletteIcon,
 		secondaryAction: <ThemeColorPicker type="secondary" />,
 	},
-	SPACER,
-	{
-		type: itemTypes.SECTION_TITLE_WITH_DIVIDER,
-		primaryText: 'ANIMATIONS',
-		secondaryText: 'Disable/Modify animations',
-	},
-	{
-		primaryText: 'Animations',
-		secondaryText: 'Turns on/off all the animations',
-		icon: AnimationIcon,
-		secondaryAction: Switch,
-		disabled: true,
-	},
+	// SPACER,
+	// {
+	// 	type: itemTypes.SECTION_TITLE_WITH_DIVIDER,
+	// 	primaryText: 'ANIMATIONS',
+	// 	secondaryText: 'Disable/Modify animations',
+	// },
+	// {
+	// 	primaryText: 'Animations',
+	// 	secondaryText: 'Turns on/off all the animations',
+	// 	icon: AnimationIcon,
+	// 	secondaryAction: Switch,
+	// 	disabled: true,
+	// },
 ];
 
 const getPreferenceList = (isDevUser = false) => [

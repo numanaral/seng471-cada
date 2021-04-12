@@ -130,8 +130,8 @@ const VariantGlobalStyle = createGlobalStyle`
 const defaultTheme = unstable_createMuiStrictModeTheme();
 
 const DEFAULT_THEME = DARK_THEME;
-const PRIMARY_COLOR = '#30BFCE';
-const SECONDARY_COLOR = '#FFB249';
+const PRIMARY_COLOR = blue[500];
+const SECONDARY_COLOR = pink[500];
 const appThemes = [DARK_THEME, LIGHT_THEME];
 const getThemeOptions = (
 	mode,
@@ -144,24 +144,18 @@ const getThemeOptions = (
 	return {
 		palette: {
 			type: mode,
-			primary: blue,
-			secondary: pink,
-			// primary: {
-			// 	// light: '#71f2ff',
-			// 	main: primaryColor || PRIMARY_COLOR,
-			// 	// dark: '#008e9d',
-			// 	contrastText:
-			// 		(isDark && '#fff') ||
-			// 		defaultTheme.palette.getContrastText('#30BFCE'),
-			// },
-			// secondary: {
-			// 	// light: '#ffe479',
-			// 	main: secondaryColor || SECONDARY_COLOR,
-			// 	// dark: '#c88214',
-			// 	contrastText:
-			// 		(isDark && '#fff') ||
-			// 		defaultTheme.palette.getContrastText('#FFB249'),
-			// },
+			primary: {
+				main: primaryColor || PRIMARY_COLOR,
+				contrastText:
+					(isDark && '#fff') ||
+					defaultTheme.palette.getContrastText('#30BFCE'),
+			},
+			secondary: {
+				main: secondaryColor || SECONDARY_COLOR,
+				contrastText:
+					(isDark && '#fff') ||
+					defaultTheme.palette.getContrastText('#FFB249'),
+			},
 			error: {
 				light: '#e57373',
 				main: '#f44336',

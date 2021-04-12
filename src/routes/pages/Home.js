@@ -13,7 +13,7 @@ const Home = () => {
 		interiorColor: null,
 	});
 	const onVehicleSelectionUpdate = newSelection => {
-		setVehicleSelection(newSelection);
+		setVehicleSelection(newSelection.vehicleSelection);
 	};
 
 	return (
