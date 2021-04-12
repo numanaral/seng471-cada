@@ -76,7 +76,7 @@ const displayInfoMessage = message => ({
 	type: SET_SNACKBAR_PROPS,
 	payload: {
 		...DEFAULT_VALUES,
-		autoHideDuration: 2500,
+		autoHideDuration: 5000,
 		severity: 'info',
 		message,
 		open: true,
