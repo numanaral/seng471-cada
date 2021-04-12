@@ -13,7 +13,7 @@ const TemplateColorWrapper = styled.div`
 	display: inline-block;
 `;
 
-const TemplateColor = ({ color, ind, onColorChange = console.log }) => {
+const TemplateColor = ({ color, ind, onColorChange }) => {
 	return (
 		<TemplateColorWrapper key={color}>
 			#C-{ind + 1}

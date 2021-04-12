@@ -13,7 +13,6 @@ const NotFound = () => <Typography>There are no users.</Typography>;
 const useWatchCustomers = () => {
 	const { userId } = useAuth();
 	const { isDesignatedSalesperson } = useRoles();
-	console.log(userId);
 
 	/** @see https://react-redux-firebase.com/docs/queries.html#types-of-queries */
 	useFirestoreConnect({
