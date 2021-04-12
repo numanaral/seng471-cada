@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Switch, useLocation } from 'react-router-dom';
 
-import useIsNotMobileFriendly from 'hooks/useIsNotMobileFriendlyHook';
 import RouteWrapper from './RouteWrapper';
 import { BASE_PATH, ROUTE_LIST } from './constants';
 
@@ -26,7 +25,6 @@ const RedirectToNotFound = () => {
 };
 
 const Routes = props => {
-	useIsNotMobileFriendly();
 	return (
 		<Switch>
 			{ROUTE_LIST.map(({ component, path, ...rest }) => {

@@ -10,19 +10,23 @@ const StyledTypography = styled(Typography)`
 	text-align: center;
 `;
 
+const VehicleSvgContainer = styled(ContainerWithCenteredItems)`
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 25%;
 	justify-content: center;
 	align-items: center;
-`;
 
-const VehicleSvgContainer = styled(ContainerWithCenteredItems)`
-	width: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	${({ theme }) => theme.breakpoints.down('sm')} {
+		flex-direction: row;
+	}
 `;
 
 const WHITE = '#FFF';

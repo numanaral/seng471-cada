@@ -4,6 +4,7 @@ import PageTitle from 'components/page-components/PageTitle';
 import VehicleSelector from 'containers/VehicleSelector';
 import useWatchCustomer from 'store/firebase/hooks/customers/useWatchCustomer';
 import useCustomer from 'store/firebase/hooks/customers/useCustomer';
+import { Divider } from '@material-ui/core';
 
 const CustomerManager = ({
 	match: {
@@ -26,6 +27,7 @@ const CustomerManager = ({
 	return (
 		<PageContainer>
 			<PageTitle icon={CustomersIcon}>{fullName || 'Customer'}</PageTitle>
+			<Divider style={{ width: '100%' }} variant="middle" />
 			{pending || error || (
 				<VehicleSelector
 					vehicleSelection={vehicleSelection}

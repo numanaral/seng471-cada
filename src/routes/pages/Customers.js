@@ -7,7 +7,7 @@ import useWatchCustomers from 'store/firebase/hooks/customers/useWatchCustomers'
 import { useHistory } from 'react-router-dom';
 import { BASE_PATH } from 'routes/constants';
 import TooltipButton from 'components/TooltipButton';
-import { Grid } from '@material-ui/core';
+import { Grid, useMediaQuery } from '@material-ui/core';
 import useCustomer from 'store/firebase/hooks/customers/useCustomer';
 import useDialogProvider from 'store/redux/hooks/useDialogProvider';
 import CustomerInfo from 'containers/VehicleSelector/CustomerInfo';
@@ -16,6 +16,7 @@ const Customers = () => {
 	const { error, pending, customers } = useWatchCustomers();
 	const { createCustomer } = useCustomer();
 	const { openComponentDialog, closeDialog } = useDialogProvider();
+	const smAndDown = useMediaQuery(theme => theme.breakpoints.down('sm'));
 
 	const customerList = customers.map(({ firstName, lastName, id }) => ({
 		title: `${firstName} ${lastName}`,
@@ -74,6 +75,13 @@ const Customers = () => {
 					&nbsp;&nbsp;
 					<TooltipButton
 						tooltip="Add new customer"
+						{...(smAndDown && {
+							text: 'Add new customer',
+							style: {
+								width: '95%',
+								marginTop: 10,
+							},
+						})}
 						onClick={onCustomerAdd}
 						icon={AddIcon}
 						bg="primary"

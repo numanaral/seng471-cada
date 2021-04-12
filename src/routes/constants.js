@@ -59,9 +59,9 @@ const LazySignUp = loadable(() => import(`./pages/SignUp`));
 
 const PRIVATE_ROUTES = [
 	{
-		title: 'Template Color Picker',
+		title: 'Colors',
 		description: `Pick template colors`,
-		path: '/template-color-picker',
+		path: '/colors',
 		component: <LazyTemplateColorPicker />,
 		roles: PAGE_ROLES.OWNER,
 	},
@@ -148,10 +148,10 @@ const SHARED_DISPLAY_PAGES = [
 	// Private Paths
 	...[
 		{
-			label: 'Template Color Picker',
-			tooltip: 'Template Color Picker',
-			text: 'Template Color Picker',
-			to: '/template-color-picker',
+			label: 'Colors',
+			tooltip: 'Colors',
+			text: 'Colors',
+			to: '/colors',
 			roles: PAGE_ROLES.OWNER,
 		},
 		{

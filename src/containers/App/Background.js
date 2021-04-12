@@ -4,10 +4,7 @@ import styled from 'styled-components';
 
 const Background = styled(Grid)`
 	overflow: auto;
-	${({ theme }) => `
-		height: calc(100% - ${NAVIGATION_BAR_HEIGHT}px);
-		padding-bottom: ${theme.spacing(2)}px;
-	`}
+	height: calc(100% - ${NAVIGATION_BAR_HEIGHT}px);
 `;
 
 export default Background;

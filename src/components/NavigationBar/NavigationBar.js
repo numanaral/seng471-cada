@@ -1,5 +1,11 @@
 import React from 'react';
-import { AppBar, Link, Toolbar, useTheme } from '@material-ui/core';
+import {
+	AppBar,
+	Link,
+	Toolbar,
+	useTheme,
+	useMediaQuery,
+} from '@material-ui/core';
 import { Link as ReactRouterLink, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -30,13 +36,14 @@ const StyledLink = styled(Link)`
 	`}
 `;
 
-const NAVIGATION_BAR_HEIGHT = 64;
+const NAVIGATION_BAR_HEIGHT = 60;
 
 const TopNavigationBar = () => {
 	const { logOut } = useLogin();
 	const { isLoggedIn, user } = useAuth();
 	const { push } = useHistory();
 	const theme = useTheme();
+	const smAndDown = useMediaQuery(t => t.breakpoints.down('xs'));
 
 	const onLogOut = () => {
 		logOut();
@@ -58,7 +65,7 @@ const TopNavigationBar = () => {
 	}
 
 	const menuProps = useMenu({
-		label: (!isLoggedIn && 'Account') || accountName,
+		label: smAndDown ? '' : (!isLoggedIn && 'Account') || accountName,
 		small: true,
 		menuProps: {
 			PaperProps: {
@@ -92,7 +99,7 @@ const TopNavigationBar = () => {
 		<StyledAppBar position="sticky" color="secondary">
 			<Toolbar>
 				<StyledLink component={ReactRouterLink} variant="h6" to="/">
-					SENG 471 - CADA
+					CADA
 				</StyledLink>
 				{isLoggedIn && (
 					<>

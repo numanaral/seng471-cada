@@ -8,6 +8,16 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+
+	${({ theme }) => theme.breakpoints.down('sm')} {
+		flex-wrap: wrap;
+		& > div {
+			width: 100%;
+			&:first-child {
+				order: 2;
+			}
+		}
+	}
 `;
 
 const VehicleSelector = ({
