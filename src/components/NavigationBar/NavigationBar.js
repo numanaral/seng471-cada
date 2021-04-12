@@ -77,7 +77,13 @@ const TopNavigationBar = () => {
 				},
 			},
 		},
-		icon: AccountIcon,
+		icon: (
+			<AccountIcon
+				{...(isLoggedIn && {
+					style: { fill: theme.palette.primary.main },
+				})}
+			/>
+		),
 		options: (isLoggedIn && [
 			{ label: 'Profile', value: '/profile' },
 			{ label: 'Log Out', value: 'logout' },
