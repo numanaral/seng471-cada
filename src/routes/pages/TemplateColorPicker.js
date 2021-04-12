@@ -51,7 +51,7 @@ const TemplateColorPicker = () => {
 			icon: InteriorIcon,
 		},
 	].map(({ name, list, icon }) => (
-		<div style={{ width: '50%', textAlign: 'center' }}>
+		<div key={name} style={{ width: '50%', textAlign: 'center' }}>
 			<PageTitle icon={icon} subtitle>
 				{name} Colors
 			</PageTitle>
@@ -60,7 +60,7 @@ const TemplateColorPicker = () => {
 				error ||
 				list.map((color, ind) => (
 					<TemplateColor
-						key={color}
+						key={name + color + ind}
 						color={color}
 						ind={ind}
 						onColorChange={onColorChange(name.toLowerCase(), ind)}
